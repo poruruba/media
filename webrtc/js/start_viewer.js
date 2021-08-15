@@ -105,7 +105,7 @@ var vue_options = {
                         });
 
                     setInterval(() =>{
-                        window.interactiveCanvas.sendTextQuery("abcdefg");
+                        window.interactiveCanvas.sendTextQuery("継続して");
                     }, 5000);
                     updated = true;
                 }
