@@ -101,8 +101,8 @@ var vue_options = {
                         this.margin = height;
                     });
                 setInterval(() =>{
-                    window.interactiveCanvas.sendTextQuery("no_match");
-                });
+                    window.interactiveCanvas.sendTextQuery("abcdefg");
+                }, 5000);
             },
         };
         window.interactiveCanvas.ready(callbacks);
