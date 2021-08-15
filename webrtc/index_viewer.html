@@ -36,7 +36,7 @@
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script src="https://unpkg.com/amazon-kinesis-video-streams-webrtc/dist/kvs-webrtc.min.js"></script>
 
-  <link rel="stylesheet" href="https://www.gstatic.com/assistant/immersivecanvas/css/styles.css">
+  <!-- <link rel="stylesheet" href="https://www.gstatic.com/assistant/immersivecanvas/css/styles.css"> -->
   <script src="https://www.gstatic.com/assistant/interactivecanvas/api/interactive_canvas.min.js"></script>
 
   <title>WebRTC Broadcast : Viewer</title>
@@ -53,11 +53,17 @@
             <input type="text" class="form-control" v-model="aws_accesskey_id">
             <label class="title">AWS_SECRET_ACCESSKEY</label>
             <input type="password" class="form-control" v-model="aws_secret_accesskey">
-            <label class="title">SIGNALING_CHANNEL_NAME</label>
-            <input type="text" class="form-control" v-model="signaling_channel_name">
             <label class="title">CLIENT_ID</label>
             <input type="text" class="form-control" v-model="signaling_client_id">
-            <br>
+            <div class="form-inline">
+              <label class="title">SIGNALING_CHANNEL_NAME</label>
+              <select class="form-control" v-model="signaling_channel_name">
+                <option value="signaling-test">signaling-test</option>
+                <option value="Room1">Room1</option>
+                <option value="Room2">Room2</option>
+                <option value="Room3">Room3</option>
+              </select>
+            </div>
             <button class="btn btn-primary" v-on:click="startViewer" v-bind:disabled="webrtc_opened">Start Viewer</button>
           </div>
           <div class="panel-footer">
