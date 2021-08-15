@@ -1,11 +1,11 @@
 'use strict';
 
-const vConsole = new VConsole();
+//const vConsole = new VConsole();
 //window.datgui = new dat.GUI();
 
 const AWS_ACCESSKEY_ID = '';
 const AWS_SECRET_ACCESSKEY = '';
-const SIGNALING_CHANNEL_NAME = '';
+const SIGNALING_CHANNEL_NAME = 'signaling-test';
 const SIGNALING_CLIENT_ID = "";
 const VIEW_WIDHT = 640;
 const VIEW_HEIGHT = 480;
@@ -92,7 +92,6 @@ var vue_options = {
             onUpdate: (data) => {
                 console.log(data);
 
-                this.signaling_channel_name = data[0].SIGNALING_CHANNEL_NAME;
                 this.aws_accesskey_id = data[0].AWS_ACCESSKEY_ID;
                 this.aws_secret_accesskey = data[0].AWS_SECRET_ACCESSKEY;
 
@@ -100,7 +99,10 @@ var vue_options = {
                     .then(height => {
                         console.log("getHeaderHeightPx:" + height);
                         this.margin = height;
-                    })
+                    });
+                setInterval(() =>{
+                    window.interactiveCanvas.sendTextQuery("no_match");
+                });
             },
         };
         window.interactiveCanvas.ready(callbacks);
