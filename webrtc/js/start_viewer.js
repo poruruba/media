@@ -105,8 +105,9 @@ var vue_options = {
                         });
 
                     setInterval(() =>{
-                        window.interactiveCanvas.sendTextQuery("継続して");
-                    }, 5000);
+                        if ( this.webrtc_opened )
+                            window.interactiveCanvas.sendTextQuery("継続して");
+                    }, 10000);
                     updated = true;
                 }
             },
