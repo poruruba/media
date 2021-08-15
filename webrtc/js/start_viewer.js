@@ -10,6 +10,8 @@ const SIGNALING_CLIENT_ID = "";
 const VIEW_WIDHT = 640;
 const VIEW_HEIGHT = 480;
 
+var updated = false;
+
 var vue_options = {
     el: "#top",
     mixins: [mixins_bootstrap],
@@ -92,17 +94,21 @@ var vue_options = {
             onUpdate: (data) => {
                 console.log(data);
 
-                this.aws_accesskey_id = data[0].AWS_ACCESSKEY_ID;
-                this.aws_secret_accesskey = data[0].AWS_SECRET_ACCESSKEY;
+                if( !updated ){
+                    this.aws_accesskey_id = data[0].AWS_ACCESSKEY_ID;
+                    this.aws_secret_accesskey = data[0].AWS_SECRET_ACCESSKEY;
 
-                window.interactiveCanvas.getHeaderHeightPx()
-                    .then(height => {
-                        console.log("getHeaderHeightPx:" + height);
-                        this.margin = height;
-                    });
-                setInterval(() =>{
-                    window.interactiveCanvas.sendTextQuery("abcdefg");
-                }, 5000);
+                    window.interactiveCanvas.getHeaderHeightPx()
+                        .then(height => {
+                            console.log("getHeaderHeightPx:" + height);
+                            this.margin = height;
+                        });
+
+                    setInterval(() =>{
+                        window.interactiveCanvas.sendTextQuery("abcdefg");
+                    }, 5000);
+                    updated = true;
+                }
             },
         };
         window.interactiveCanvas.ready(callbacks);
