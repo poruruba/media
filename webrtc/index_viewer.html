@@ -36,10 +36,13 @@
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script src="https://unpkg.com/amazon-kinesis-video-streams-webrtc/dist/kvs-webrtc.min.js"></script>
 
+  <link rel="stylesheet" href="https://www.gstatic.com/assistant/immersivecanvas/css/styles.css">
+  <script src="https://www.gstatic.com/assistant/interactivecanvas/api/interactive_canvas.min.js"></script>
+
   <title>WebRTC Broadcast : Viewer</title>
 </head>
 <body>
-    <div id="top" class="container-fluid">
+    <div id="top" class="container-fluid" v-bind:style="{ 'margin-top': margin + 'px' }">
       <h1>WebRTC Broadcast : Viewer</h1>
       <hr>
 
