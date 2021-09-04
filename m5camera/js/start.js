@@ -25,8 +25,7 @@ var vue_options = {
                 console.log(data);
                 if( !updated ){
                     setInterval(() => {
-                        if (this.webrtc_opened)
-                            window.interactiveCanvas.sendTextQuery("継続して");
+                        window.interactiveCanvas.sendTextQuery("継続して");
                     }, UPDATE_INTERVAL);
                     updated = true;
                 }
