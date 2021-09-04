@@ -23,7 +23,7 @@ var vue_options = {
         const callbacks = {
             onUpdate: (data) => {
                 console.log(data);
-                if( updated ){
+                if( !updated ){
                     setInterval(() => {
                         if (this.webrtc_opened)
                             window.interactiveCanvas.sendTextQuery("継続して");
