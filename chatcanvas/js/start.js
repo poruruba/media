@@ -1,6 +1,6 @@
 'use strict';
 
-const vConsole = new VConsole();
+//const vConsole = new VConsole();
 //window.datgui = new dat.GUI();
 
 const base_url2 = "https://home.poruru.work:20443";
@@ -69,38 +69,45 @@ var vue_options = {
                 window.interactiveCanvas.sendTextQuery("ねえねえ、" + this.message);
             }else{
                 var json = await do_post(base_url + "/chatcanvas-put-chat", {
-                    redirect_uri: base_url2,
                     room: this.room,
                     character: this.icon_mine,
+                    redirect_uri: base_url2,
                     message: this.message });
                 console.log(json);
             }
         },
+        start_chat: async function(){
+            window.interactiveCanvas.sendTextQuery("私の名前は " + this.icon_mine + " です。");
+        },
         character_select: async function(){
-            try{
             this.icon_mine = this.icon_list[this.icon_selecting];
             window.interactiveCanvas.setCanvasState({
                 character: this.icon_mine,
                 room: this.room
             });
+            window.interactiveCanvas.sendTextQuery("私の名前は " + this.icon_mine + " です。");
             this.dialog_close('#character_select_dialog');
 
-            console.log(base_url + "/chatcanvas-get-chat");
-            var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time, redirect_uri: base_url2 });
-            if( json.status == 'ok' ){
-                this.append_chat_list(json);
-            } 
-            setInterval(async () =>{
-                console.log('setInterval1 function called');
-                var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time, redirect_uri: base_url2 });
+            try{
+                var json = await do_post(base_url + "/chatcanvas-get-chat", {
+                    room: this.room,
+                    start: this.last_chat_time,
+                    redirect_uri: base_url2,
+                });
                 if( json.status == 'ok' ){
                     this.append_chat_list(json);
                 } 
-            }, UPDATE_INTERVAL);
-//            setInterval(() =>{
-//                console.log('setInterval2 function called');
-//               window.interactiveCanvas.sendTextQuery("継続して");
-//            }, UPDATE_INTERVAL);
+                setInterval(async () =>{
+                    console.log('setInterval function called');
+                    var json = await do_post(base_url + "/chatcanvas-get-chat", {
+                        room: this.room,
+                        start: this.last_chat_time,
+                        redirect_uri: base_url2,
+                    });
+                    if( json.status == 'ok' ){
+                        this.append_chat_list(json);
+                    } 
+                }, UPDATE_INTERVAL);
             }catch(error){
                 console.log(error);
                 alert(error);
