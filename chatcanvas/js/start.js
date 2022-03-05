@@ -3,7 +3,8 @@
 const vConsole = new VConsole();
 //window.datgui = new dat.GUI();
 
-const base_url = "https://home.poruru.work:20443";
+const base_url2 = "https://home.poruru.work:20443";
+const base_url = "https://pure-sands-78243.herokuapp.com";
 const room_name = "マイホーム";
 
 const UPDATE_INTERVAL = 5000;
@@ -84,13 +85,13 @@ var vue_options = {
             this.dialog_close('#character_select_dialog');
 
             console.log(base_url + "/chatcanvas-get-chat");
-            var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time });
+            var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time, redirect_uri: base_url2 });
             if( json.status == 'ok' ){
                 this.append_chat_list(json);
             } 
             setInterval(async () =>{
                 console.log('setInterval function called');
-                var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time });
+                var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time, redirect_uri: base_url2 });
                 if( json.status == 'ok' ){
                     this.append_chat_list(json);
                 } 
