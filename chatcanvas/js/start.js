@@ -52,17 +52,14 @@ var vue_options = {
     computed: {
     },
     methods: {
-        icon_prev: function(){
-            if( this.icon_selecting == 0 )
-                this.icon_selecting = this.icon_list.length - 1;
-            else
-                this.icon_selecting--;
-        },
-        icon_next: function(){
-            if( this.icon_selecting >= this.icon_list.length - 1 )
-                this.icon_selecting = 0;
-            else
-                this.icon_selecting++;
+        icon_flip: function(prev){
+            if( prev ){
+                if( this.icon_selecting > 0 )
+                    this.icon_selecting--;
+            }else{
+                if( this.icon_selecting < this.icon_list.length - 1 )
+                    this.icon_selecting++;
+            }
         },
         append_chat: async function(){
             if( this.connected ){
@@ -87,7 +84,7 @@ var vue_options = {
                 character: this.icon_mine,
                 room: this.room
             });
-            window.interactiveCanvas.sendTextQuery("私の名前は " + this.icon_mine + " です。");
+            this.start_chat();
             this.dialog_close('#character_select_dialog');
 
             try{
