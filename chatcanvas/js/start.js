@@ -75,6 +75,7 @@ var vue_options = {
             }
         },
         character_select: async function(){
+            try{
             this.icon_mine = this.icon_list[this.icon_selecting];
             window.interactiveCanvas.setCanvasState({
                 character: this.icon_mine,
@@ -93,6 +94,10 @@ var vue_options = {
                     this.append_chat_list(json);
                 } 
             }, UPDATE_INTERVAL);
+            }catch(error){
+                console.log(error);
+                alert(error);
+            }
         },
         append_chat_list: function(json){
             this.last_chat_time = json.time;
