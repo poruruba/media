@@ -77,6 +77,8 @@ var vue_options = {
             }
         },
         start_chat: async function(){
+            if( !this.icon_mine )
+                return;
             window.interactiveCanvas.sendTextQuery("私の名前は " + this.icon_mine + " です。");
         },
         character_select: async function(){
@@ -151,17 +153,19 @@ var vue_options = {
         .then(height => {
             console.log("getHeaderHeightPx:" + height);
             this.margin = height;
+
+            const callbacks = {
+                onUpdate: (data) => {
+                    console.log(data);
+                    if( !this.connected ){
+                        this.connected = true;
+                    }
+                }
+            };
+            window.interactiveCanvas.ready(callbacks);
+    
             this.dialog_open('#character_select_dialog');
         });
-        const callbacks = {
-            onUpdate: (data) => {
-                console.log(data);
-                if( !this.connected ){
-                    this.connected = true;
-                }
-            }
-        };
-        window.interactiveCanvas.ready(callbacks);
     }
 };
 vue_add_data(vue_options, { progress_title: '' }); // for progress-dialog
