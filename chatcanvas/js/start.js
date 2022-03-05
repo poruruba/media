@@ -83,6 +83,7 @@ var vue_options = {
             });
             this.dialog_close('#character_select_dialog');
 
+            console.log(base_url + "/chatcanvas-get-chat");
             var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time });
             if( json.status == 'ok' ){
                 this.append_chat_list(json);
