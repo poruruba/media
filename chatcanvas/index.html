@@ -92,9 +92,9 @@
               <label>ルーム名</label> {{room}}<br>
               <label>キャラクター</label> {{icon_list[icon_selecting]}}<br>
               <div class="text-center">
-                <button class="btn btn-default" v-on:click="icon_prev">&lt;&lt;</button>
+                <button class="btn btn-default" v-on:click="icon_flip(true)">&lt;&lt;</button>
                 <img v-bind:src="'img/' + icon_list[icon_selecting]">
-                <button class="btn btn-default" v-on:click="icon_next">&gt;&gt;</button>
+                <button class="btn btn-default" v-on:click="icon_flip(false)">&gt;&gt;</button>
               </div>
             </div>
             <div class="modal-footer">
