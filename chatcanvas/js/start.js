@@ -69,6 +69,7 @@ var vue_options = {
                 window.interactiveCanvas.sendTextQuery("ねえねえ、" + this.message);
             }else{
                 var json = await do_post(base_url + "/chatcanvas-put-chat", {
+                    redirect_uri: base_url2,
                     room: this.room,
                     character: this.icon_mine,
                     message: this.message });
