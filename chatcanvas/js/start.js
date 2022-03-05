@@ -97,6 +97,10 @@ var vue_options = {
                     this.append_chat_list(json);
                 } 
             }, UPDATE_INTERVAL);
+            setInterval(() =>{
+               if ( this.webrtc_opened )
+                     window.interactiveCanvas.sendTextQuery("継続して");
+            }, UPDATE_INTERVAL);
             }catch(error){
                 console.log(error);
                 alert(error);
