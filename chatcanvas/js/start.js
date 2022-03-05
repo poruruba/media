@@ -91,13 +91,14 @@ var vue_options = {
                 this.append_chat_list(json);
             } 
             setInterval(async () =>{
-                console.log('setInterval function called');
+                console.log('setInterval1 function called');
                 var json = await do_post(base_url + "/chatcanvas-get-chat", { room: this.room, start: this.last_chat_time, redirect_uri: base_url2 });
                 if( json.status == 'ok' ){
                     this.append_chat_list(json);
                 } 
             }, UPDATE_INTERVAL);
             setInterval(() =>{
+                console.log('setInterval2 function called');
                window.interactiveCanvas.sendTextQuery("継続して");
             }, UPDATE_INTERVAL);
             }catch(error){
