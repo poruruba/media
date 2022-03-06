@@ -3,8 +3,8 @@
 //const vConsole = new VConsole();
 //window.datgui = new dat.GUI();
 
-const base_url2 = "https://home.poruru.work:20443";
-const base_url = "https://pure-sands-78243.herokuapp.com";
+const base_url2 = "https://xxx.poruru.xxx:20443";
+const base_url = "https://xxxxxx.herokuapp.com";
 const room_name = "マイホーム";
 
 const UPDATE_INTERVAL = 5000;
