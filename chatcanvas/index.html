@@ -55,7 +55,7 @@
           </div>
       
           <!-- ▼会話エリア scrollを外すと高さ固定解除 -->
-          <div class="line__contents scroll" id="el">
+          <div class="line__contents scroll" style="height: 70vh;" id="el">
       
             <div v-for="(item, index) in chat_list" v-bind:class="`line__${item.align}`">
               <figure v-if="item.align=='left'"><img v-bind:src="'img/' + item.character"></figure>
