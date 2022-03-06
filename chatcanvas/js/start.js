@@ -61,6 +61,18 @@ var vue_options = {
                     this.icon_selecting++;
             }
         },
+        append_sign: async function(sign){
+            if( this.connected ){
+                window.interactiveCanvas.sendTextQuery("そうそう、" + sign);
+            }else{
+                var json = await do_post(base_url + "/chatcanvas-put-chat", {
+                    room: this.room,
+                    character: this.icon_mine,
+                    redirect_uri: base_url2,
+                    sign: sign });
+                console.log(json);
+            }
+        },
         append_chat: async function(){
             if( this.connected ){
                 window.interactiveCanvas.sendTextQuery("ねえねえ、" + this.message);
@@ -124,14 +136,16 @@ var vue_options = {
                     this.chat_list.push({
                         align: "right",
                         message: talk.message,
+                        sign: talk.sign,
                         date: date.toLocaleString(),
                     });
                 }else{
                     this.chat_list.push({
                         align: "left",
                         message: talk.message,
+                        sign: talk.sign,
                         date: date.toLocaleString(),
-                        img_src: "img/" + talk.character
+                        character: talk.character
                     });
                 }
             }
