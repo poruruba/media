@@ -58,10 +58,11 @@
           <div class="line__contents scroll" id="el">
       
             <div v-for="(item, index) in chat_list" v-bind:class="`line__${item.align}`">
-              <figure v-if="item.align=='left'"><img v-bind:src="item.img_src"></figure>
+              <figure v-if="item.align=='left'"><img v-bind:src="'img/' + item.character"></figure>
               <div v-bind:class="`line__${item.align}-text`">
                 <div v-if="item.align=='left'" class="name">{{item.date}}</div>
-                <div class="text">{{item.message}}</div>
+                <div v-if="item.message" class="text">{{item.message}}</div>
+                <div v-if="item.sign" class="stamp"><img v-bind:src="'img/' + item.sign" /></div>
                 <span v-if="item.align=='right'" class="date">{{item.date}}</span>
               </div> 
             </div>
@@ -82,6 +83,11 @@
         <div v-else>
           <button class="btn btn-primary btn-lg" v-on:click="start_chat">チャット</button>
         </div>
+        <img class="img-thumbnail pull-right" width="64" src="img/sign_sad.png" v-on:click="append_sign('sign_sad.png')">
+        <img class="img-thumbnail pull-right" width="64" src="img/sign_sleep.png" v-on:click="append_sign('sign_sleep.png')">
+        <img class="img-thumbnail pull-right" width="64" src="img/sign_happy.png" v-on:click="append_sign('sign_happy.png')">
+        <img class="img-thumbnail pull-right" width="64" src="img/sign_normal.png" v-on:click="append_sign('sign_normal.png')">
+
 
         <modal-dialog id="character_select_dialog">
           <div slot="content">
